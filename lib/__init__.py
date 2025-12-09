@@ -3,9 +3,13 @@ import pathlib
 import sys
 
 
-def load_file(filename):
+def load_file(filename, strip_chars=True):
     with (pathlib.Path(filename)).open(mode="r") as f:
-        lines = [x.strip() for x in f.readlines()]
+        lines = (
+            [x.strip() for x in f.readlines()]
+            if strip_chars
+            else [x for x in f.readlines()]
+        )
     return lines
 
 
